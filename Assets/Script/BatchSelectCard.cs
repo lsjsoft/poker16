@@ -4,45 +4,34 @@ using UnityEngine;
 
 public class BatchSelectCard : MonoBehaviour
 {
-	/*
-	private bool inTouchState = false;
-	private Vector2 firstTouchPos = Vector2.zero;
+	bool bPress = false;
+	GameObject firstSelObj = null;
 
-	void Update () 
+	void Start()
 	{
-		int currentTouchCount = Input.touchCount;
-
-		if (inTouchState) 
+		UIEventListener.Get (gameObject).onPress = delegate(GameObject go, bool state) 
 		{
-			DragFigner ();
+			bPress = state;
 
-			if (currentTouchCount == 0) 
+			if (state)
 			{
-				// release 	
-				inTouchState = false;
+				Eventer.Fire("BatchSelectCardBegin", new object[] { go } );
 			}
-		} 
-		else 
+			else
+			{
+				Eventer.Fire("BatchSelectCardEnd", new object[] { go } );
+			}
+		};
+	}
+
+	void Update()
+	{
+		if (bPress) 
 		{
-			if (currentTouchCount == 1) 
+			if (UICamera.Raycast ( new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0)))
 			{
-				inTouchState = true;
-				firstTouchPos = Input.GetTouch (0).position;
-
-				//UICamera.currentCamera.ra
-				UICamera.Raycast( 
-			}
-			else 
-			{
-				// skip
+				Eventer.Fire ("BatchSelectCardHover", new object[] { UICamera.lastHit.collider.gameObject });
 			}
 		}
 	}
-
-	void DragFigner()
-	{
-		Vector2 currentPosition = Input.GetTouch (0).position;
-		// firstTouchPos
-		UICamera.currentCamera.ScreenToWorldPoint(
-	} */
 }

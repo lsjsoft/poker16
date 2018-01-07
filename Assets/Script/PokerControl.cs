@@ -15,6 +15,22 @@ class PokerControl: MonoBehaviour
     public UIWidget selectCardObj;
 	private PlayerCard currentCard;
 
+	private int _showIndex = 0;
+
+	public int ShowIndex
+	{
+		set 
+		{
+			_showIndex = value;
+		}
+
+		get 
+		{
+			return _showIndex;
+		}
+	}
+
+
     public bool isSelected
     {
         get
@@ -28,6 +44,12 @@ class PokerControl: MonoBehaviour
         unselectedPosition = this.transform.localPosition;
 		selectedPosition = selectCardObj.transform.localPosition;
     }
+
+	public void SetSelectState(bool sel)
+	{
+		selected = sel;
+		RefreshSelectState ();
+	}
 
     public void SwitchSelectState()
     {
@@ -68,4 +90,6 @@ class PokerControl: MonoBehaviour
 	{
 		return currentCard;
 	}
+
+
 }
