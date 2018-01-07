@@ -7,18 +7,7 @@ public class TestCard : MonoBehaviour {
 
 	public PlayerCardList pcl;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	private System.Random random = new System.Random ();
-
 	public void AddTestCard()
 	{
 		PlayerCards pc = new PlayerCards ();
